@@ -11,6 +11,7 @@ function RadialMenuController:Start()
 	
 end
 
+local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
 
@@ -65,15 +66,37 @@ function TweenGui(gui, Time, delayTime, Position) -- Controls the tweening of th
 
     tween:Play()
 
-end
-
-wait(7)
-
-for index, Table in ipairs(RadiulMenuComponents) do -- Calls the function to tween all gui
-
-    TweenGui(Table[2], 1, 0, Table[3])
+    wait(Time)
 
 end
+
+UIS.InputBegan:Connect(function(input, gpe)
+
+    if gpe then 
+        return 
+    else
+
+        if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.P then
+
+            for index, Table in ipairs(RadiulMenuComponents) do -- Calls the function to tween all gui
+
+                TweenGui(Table[2], 1, 0, Table[3])
+
+                local place = table.find(RadiulMenuComponents, Table) + 1
+                for i = place, #RadiulMenuComponents do
+
+                    --RadiulMenuComponents[i][2].Position = RadiulMenuComponents[place][3]
+                    --Make it so that instead of it already placing the next gui there it tweens it there and carries the rest with it at the same time
+
+                end
+
+            end
+
+        end
+
+    end
+
+end)
 
 --[[
     To be Done:
