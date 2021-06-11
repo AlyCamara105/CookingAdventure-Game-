@@ -102,7 +102,8 @@ end)
     To be Done:
         - Make the turning aspect of the gui tweening (Make sure to make it interruptable)
         - Make it so that the gui gets smaller on mouse hover and bigger on mouse click (Make Compatible for Mobile!)
-        - Make it so that the Radial Menu is triggered from a specific key (TBD)
+        -̶ ̶M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶t̶h̶e̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶ ̶i̶s̶ ̶t̶r̶i̶g̶g̶e̶r̶e̶d̶ ̶f̶r̶o̶m̶ ̶a̶ ̶s̶p̶e̶c̶i̶f̶i̶c̶ ̶k̶e̶y̶ ̶(̶T̶B̶D̶)̶
+        -Strike through command is Ctrl + K
 ]]
 
 function RadialMenuController:Init()
