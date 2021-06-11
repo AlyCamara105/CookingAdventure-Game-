@@ -47,11 +47,14 @@ for index, TableValue in ipairs(RadiulMenuComponents) do
 
     end
 
+    RadiulMenuComponents[1][2].Position -= UDim2.new(0,0,0.03,0)
+
 end
 
 for index, gui in ipairs(RaduilMenuScreenGui:GetChildren()) do --Makes all the gui in the same position
 
-    gui.Position = RadiulMenuComponents[1][3]
+    gui.Position = RadiulMenuComponents[1][2].Position
+    gui.ImageTransparency = 1
 
 end
 
@@ -59,8 +62,9 @@ function TweenGui(gui, Time, delayTime, Position) -- Controls the tweening of th
 
     local goal = {}
     goal.Position = Position
+    goal.ImageTransparency = 0
 
-    local tweeninfo = TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, delayTime)
+    local tweeninfo = TweenInfo.new(Time, Enum.EasingStyle.Circular, Enum.EasingDirection.Out, 0, false, delayTime)
 
     local tween = TS:Create(gui, tweeninfo, goal)
 
@@ -76,17 +80,22 @@ UIS.InputBegan:Connect(function(input, gpe)
         return 
     else
 
+        local TweenTime = 0.1
+        local delayTime = 0
+
         if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.P then
 
             for index, Table in ipairs(RadiulMenuComponents) do -- Calls the function to tween all gui
 
-                TweenGui(Table[2], 1, 0, Table[3])
+                if index == #RadiulMenuComponents then
 
-                local place = table.find(RadiulMenuComponents, Table) + 1
-                for i = place, #RadiulMenuComponents do
+                    TweenGui(Table[2], TweenTime, delayTime, Table[3])
+                    break
 
-                    --RadiulMenuComponents[i][2].Position = RadiulMenuComponents[place][3]
-                    --Make it so that instead of it already placing the next gui there it tweens it there and carries the rest with it at the same time
+                else
+                    
+                    TweenGui(Table[2], TweenTime, delayTime, Table[3])
+                    RadiulMenuComponents[index+1][2].Position = Table[2].Position
 
                 end
 
