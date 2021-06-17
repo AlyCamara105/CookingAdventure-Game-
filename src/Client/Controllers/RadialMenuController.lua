@@ -1,4 +1,4 @@
--- Radial Menu Controller
+  -- Radial Menu Controller
 -- Username
 -- May 30, 2021
 
@@ -20,7 +20,6 @@ repeat
 until player.Character
 
 local RadialMenuScreenGui = player.PlayerGui.RadialMenu
-RadialMenuScreenGui.Enabled = false
 
 local RadiulMenuComponents = {
 
@@ -50,12 +49,18 @@ for index, TableValue in ipairs(RadiulMenuComponents) do
 
 end
 
+local GUISTWEENED = {}
+
 for index, gui in ipairs(RadialMenuScreenGui:GetChildren()) do --Makes all the gui in the same position
 
     if gui.Name == "Center" then
 
         print("")
     else
+
+        gui.Position = RadialMenuScreenGui.Center.Position
+        gui.ImageTransparency = 1
+        gui.Visible = false
 
         local defaultSize = gui.Size
         local EnterScale = 1.20
@@ -65,31 +70,44 @@ for index, gui in ipairs(RadialMenuScreenGui:GetChildren()) do --Makes all the g
 
         local ClickSize = UDim2.new(defaultSize.X.Scale*ClickScale, defaultSize.X.Offset, defaultSize.Y.Scale*ClickScale, defaultSize.Y.Offset)
 
-        gui.Position = RadialMenuScreenGui.Center.Position
-        gui.ImageTransparency = 1
-
         gui.MouseEnter:Connect(function()
 
-            gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, true)
+            if table.find(GUISTWEENED, gui.Name) == nil then
+
+                gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, false)
+
+            end 
         
         end)
 
         gui.MouseLeave:Connect(function()
 
-            gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, true)
-            
+            if table.find(GUISTWEENED, gui.Name) == nil then
+
+                gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, false)
+
+            end
+
         end)
 
         gui.MouseButton1Down:Connect(function(x,y)
-        
-            gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, true)
+
+            if table.find(GUISTWEENED, gui.Name) == nil then
+
+                gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, false)
+
+            end
         
         end)
 
         gui.MouseButton1Click:Connect(function()
-        
-            gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, true)
-        
+
+            if table.find(GUISTWEENED, gui.Name) == nil then
+
+                gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.05, false)
+
+            end
+
         end)
 
     end
@@ -97,6 +115,10 @@ for index, gui in ipairs(RadialMenuScreenGui:GetChildren()) do --Makes all the g
 end
 
 function TweenGuiStart(gui, Time, delayTime, Position) -- Controls the tweening of the gui's'
+
+    local place = #GUISTWEENED + 1
+
+    table.insert(GUISTWEENED, gui.Name)
 
     local goal = {}
     goal.Position = Position
@@ -106,7 +128,15 @@ function TweenGuiStart(gui, Time, delayTime, Position) -- Controls the tweening 
 
     local tween = TS:Create(gui, tweeninfo, goal)
 
+    gui.Visible = true
+
     tween:Play()
+
+    tween.Completed:Connect(function()
+    
+        table.remove(GUISTWEENED, place)
+    
+    end)
 
 end
 
@@ -122,6 +152,12 @@ function TweenGuiEnd(gui, Time, delayTime, Position) -- Controls the tweening of
 
     tween:Play()
 
+    tween.Completed:Connect(function()
+    
+        gui.Visible = false
+    
+    end)
+
 end
 
 local openedMenu = false
@@ -136,7 +172,7 @@ UIS.InputBegan:Connect(function(input, gpe)
         local TweenTime = 0.05
         local delayTime = 0
 
-        if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.P then
+        if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.R then
 
             for i = #RadiulMenuComponents, 1, -1 do -- Calls the function to tween all gui
 
@@ -145,26 +181,19 @@ UIS.InputBegan:Connect(function(input, gpe)
             end
 
             openedMenu = false
-            RadialMenuScreenGui.Enabled = false
 
         end  
     
     else
 
-        RadialMenuScreenGui.Enabled = true
-
         local TweenTime = 0.05
         local delayTime = 0
 
-        if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.P then
-
-            local times = 0
+        if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.R then
 
             for index, Table in ipairs(RadiulMenuComponents) do -- Calls the function to tween all gui
 
                 TweenGuiStart(Table[2], TweenTime, delayTime, Table[3])
-
-                wait(0.05)
 
             end
 
@@ -180,6 +209,10 @@ end)
     To be Done:
         - M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶t̶h̶e̶ ̶g̶u̶i̶ ̶g̶e̶t̶s̶ ̶s̶m̶a̶l̶l̶e̶r̶ ̶o̶n̶ ̶m̶o̶u̶s̶e̶ ̶h̶o̶v̶e̶r̶ ̶a̶n̶d̶ ̶b̶i̶g̶g̶e̶r̶ ̶o̶n̶ ̶m̶o̶u̶s̶e̶ ̶c̶l̶i̶c̶k̶
         - ̶M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶w̶h̶e̶n̶ ̶y̶o̶u̶ ̶c̶l̶i̶c̶k̶ ̶P̶ ̶a̶g̶a̶i̶n̶ ̶i̶t̶ ̶c̶l̶o̶s̶e̶s̶ ̶t̶h̶e̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶
+        - M̶a̶k̶e̶ ̶R̶ ̶t̶h̶e̶ ̶K̶e̶y̶C̶o̶d̶e̶ ̶f̶o̶r̶ ̶t̶r̶i̶g̶e̶g̶r̶i̶n̶g̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶
+        - F̶i̶x̶ ̶g̶u̶i̶ ̶b̶l̶o̶c̶k̶i̶n̶g̶ ̶c̶a̶m̶e̶r̶a̶ ̶t̶u̶r̶n̶i̶n̶g̶ ̶b̶u̶g̶
+        - F̶i̶x̶ ̶r̶a̶d̶i̶a̶l̶ ̶m̶e̶n̶u̶ ̶m̶i̶s̶c̶o̶n̶f̶i̶g̶u̶r̶a̶t̶i̶o̶n̶ ̶w̶h̶e̶n̶ ̶o̶p̶e̶n̶
+        - Add hover GUI
         - Make the Radial Menu mobile compatible
         - Clean up the code and simplify it (Try modules now for prototype????)
         - F̶i̶x̶ ̶t̶h̶e̶ ̶p̶o̶s̶i̶t̶i̶o̶n̶i̶n̶g̶ ̶o̶f̶ ̶t̶h̶e̶ ̶m̶i̶d̶d̶l̶e̶ ̶g̶u̶i̶ ̶i̶m̶a̶g̶e̶ ̶l̶a̶b̶e̶l̶ ̶c̶a̶l̶l̶e̶d̶ ̶"̶C̶e̶n̶t̶e̶r̶"̶
