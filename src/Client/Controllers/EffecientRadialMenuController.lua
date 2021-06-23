@@ -45,7 +45,10 @@ end
         - M̶a̶k̶e̶ ̶R̶ ̶t̶h̶e̶ ̶K̶e̶y̶C̶o̶d̶e̶ ̶f̶o̶r̶ ̶t̶r̶i̶g̶e̶g̶r̶i̶n̶g̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶
         - F̶i̶x̶ ̶g̶u̶i̶ ̶b̶l̶o̶c̶k̶i̶n̶g̶ ̶c̶a̶m̶e̶r̶a̶ ̶t̶u̶r̶n̶i̶n̶g̶ ̶b̶u̶g̶
         - F̶i̶x̶ ̶r̶a̶d̶i̶a̶l̶ ̶m̶e̶n̶u̶ ̶m̶i̶s̶c̶o̶n̶f̶i̶g̶u̶r̶a̶t̶i̶o̶n̶ ̶w̶h̶e̶n̶ ̶o̶p̶e̶n̶
-        - Fix bug where if open Radial Menu with mouse in middle GUI appears bigger than actually is
+        - Fix bug where if open Radial Menu with mouse in middle GUI appears bigger than actually is (Try fixing with Activated event!)
+        - Add other mobile buttons
+        - Replace roblox jump button with one provided by Airpunch
+        - Find better click button sound
         - Make the Radial Menu mobile compatible by using module
         - Clean up the code and simplify it 
         - F̶i̶x̶ ̶t̶h̶e̶ ̶p̶o̶s̶i̶t̶i̶o̶n̶i̶n̶g̶ ̶o̶f̶ ̶t̶h̶e̶ ̶m̶i̶d̶d̶l̶e̶ ̶g̶u̶i̶ ̶i̶m̶a̶g̶e̶ ̶l̶a̶b̶e̶l̶ ̶c̶a̶l̶l̶e̶d̶ ̶"̶C̶e̶n̶t̶e̶r̶"̶
