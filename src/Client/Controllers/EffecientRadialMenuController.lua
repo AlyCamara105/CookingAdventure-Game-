@@ -17,10 +17,14 @@ function EffecientRadialMenuController:Start()
         wait()
     until player.Character
 
+    print(UIS.TouchEnabled)
+    print(UIS.KeyboardEnabled)
+
     local RMmodule = self.Modules.RadialMenuModule
 
     RMmodule:UploadRadialComponentsDictionaryAndPositionThem()
-    RMmodule:ConnectButtonEvents()
+    RMmodule:ConnectRadialMenuButtonEvents()
+    RMmodule:ConnectMobileButtonEvents()
 
     UIS.InputBegan:Connect(function(input, gpe)
 
@@ -45,11 +49,11 @@ end
         - M̶a̶k̶e̶ ̶R̶ ̶t̶h̶e̶ ̶K̶e̶y̶C̶o̶d̶e̶ ̶f̶o̶r̶ ̶t̶r̶i̶g̶e̶g̶r̶i̶n̶g̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶
         - F̶i̶x̶ ̶g̶u̶i̶ ̶b̶l̶o̶c̶k̶i̶n̶g̶ ̶c̶a̶m̶e̶r̶a̶ ̶t̶u̶r̶n̶i̶n̶g̶ ̶b̶u̶g̶
         - F̶i̶x̶ ̶r̶a̶d̶i̶a̶l̶ ̶m̶e̶n̶u̶ ̶m̶i̶s̶c̶o̶n̶f̶i̶g̶u̶r̶a̶t̶i̶o̶n̶ ̶w̶h̶e̶n̶ ̶o̶p̶e̶n̶
-        - Fix bug where if open Radial Menu with mouse in middle GUI appears bigger than actually is (Try fixing with Activated event!)
+        - F̶i̶x̶ ̶b̶u̶g̶ ̶w̶h̶e̶r̶e̶ ̶i̶f̶ ̶o̶p̶e̶n̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶ ̶w̶i̶t̶h̶ ̶m̶o̶u̶s̶e̶ ̶i̶n̶ ̶m̶i̶d̶d̶l̶e̶ ̶G̶U̶I̶ ̶a̶p̶p̶e̶a̶r̶s̶ ̶b̶i̶g̶g̶e̶r̶ ̶t̶h̶a̶n̶ ̶a̶c̶t̶u̶a̶l̶l̶y̶ ̶i̶s̶ ̶(̶T̶r̶y̶ ̶f̶i̶x̶i̶n̶g̶ ̶w̶i̶t̶h̶ ̶A̶c̶t̶i̶v̶a̶t̶e̶d̶ ̶e̶v̶e̶n̶t̶!̶)̶
         - Add other mobile buttons
         - Replace roblox jump button with one provided by Airpunch
         - Find better click button sound
-        - Make the Radial Menu mobile compatible by using module
+        - M̶a̶k̶e̶ ̶t̶h̶e̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶ ̶m̶o̶b̶i̶l̶e̶ ̶c̶o̶m̶p̶a̶t̶i̶b̶l̶e̶ ̶b̶y̶ ̶u̶s̶i̶n̶g̶ ̶m̶o̶d̶u̶l̶e̶
         - Clean up the code and simplify it 
         - F̶i̶x̶ ̶t̶h̶e̶ ̶p̶o̶s̶i̶t̶i̶o̶n̶i̶n̶g̶ ̶o̶f̶ ̶t̶h̶e̶ ̶m̶i̶d̶d̶l̶e̶ ̶g̶u̶i̶ ̶i̶m̶a̶g̶e̶ ̶l̶a̶b̶e̶l̶ ̶c̶a̶l̶l̶e̶d̶ ̶"̶C̶e̶n̶t̶e̶r̶"̶
         - M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶t̶h̶e̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶ ̶i̶s̶ ̶t̶r̶i̶g̶g̶e̶r̶e̶d̶ ̶f̶r̶o̶m̶ ̶a̶ ̶s̶p̶e̶c̶i̶f̶i̶c̶ ̶k̶e̶y̶ ̶(̶T̶B̶D̶)̶

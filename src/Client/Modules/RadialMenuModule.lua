@@ -16,6 +16,9 @@ RMmodule.ClickSound = RP:WaitForChild("Sounds",1).Click
 -- Radial Menu
 RMmodule.RadialMenuScreenGui = player.PlayerGui.RadialMenu
 
+-- Mobile buttons Screen Gui
+RMmodule.MobileButtonScreenGui = player.PlayerGui.MobileIcons
+
 -- Table of buttons to be connected to the button events
 RMmodule.AllButtunGUi = {
 
@@ -27,7 +30,12 @@ RMmodule.AllButtunGUi = {
     {"Notebook"},
     {"Settings"},
     {"Map"},
-    {"RadialMenuButton"}
+    {"RadialMenuButton"},
+    {"CrouchIcon"},
+    {"DodgerollIcon"},
+    {"HandIcon"},
+    {"JumpIcon"},
+    {"RunIcon"}
 
 }
 
@@ -45,15 +53,18 @@ RMmodule.RadialMenuComponents = {
 
 }
 
+-- Table of Special Gui Buttons events
+RMmodule.SpecialGuis = {"RadialMenuButton"}
+
 -- Action Events that will be connected for buttons
 function RMmodule:ConnectSpecificRadialMenuButton(gui)
 
     if gui.Name == "RadialMenuButton" then
 
-        gui.MouseButton1Click:Connect(function()
-
+        gui.Activated:Connect(function(InputObject, Clicks)
+        
             self:OpenOrCloseRadialMenu()
-
+        
         end)
 
     end
@@ -83,6 +94,7 @@ function RMmodule:UploadRadialComponentsDictionaryAndPositionThem()
                 gui.Position = self.RadialMenuScreenGui.Center.Position
                 gui.ImageTransparency = 1
                 gui.Visible = false
+                gui.Active = false
             
             end
     
@@ -92,14 +104,11 @@ function RMmodule:UploadRadialComponentsDictionaryAndPositionThem()
 
 end
 
--- Holds table of gui's to not be tweened
-RMmodule.GUISTWEENED = {}
-
 --Playtime for button effects
 RMmodule.ButtonEffectsTime = 0.05
 
 -- Function that connects the gloabal button events
-function RMmodule:ConnectButtonEvents()
+function RMmodule:ConnectRadialMenuButtonEvents()
 
     for index, TableValue in ipairs(self.AllButtunGUi) do
 
@@ -107,7 +116,11 @@ function RMmodule:ConnectButtonEvents()
     
             if TableValue[1] == gui.Name then
 
-                self:ConnectSpecificRadialMenuButton(gui)
+                if table.find(self.SpecialGuis, gui.Name) ~= nil then
+
+                    self:ConnectSpecificRadialMenuButton(gui)
+
+                end
     
                 local defaultSize = gui.Size
                 local EnterScale = 1.20
@@ -116,51 +129,98 @@ function RMmodule:ConnectButtonEvents()
                 local EnterSize = UDim2.new(defaultSize.X.Scale*EnterScale, defaultSize.X.Offset, defaultSize.Y.Scale*EnterScale, defaultSize.Y.Offset)
     
                 local ClickSize = UDim2.new(defaultSize.X.Scale*ClickScale, defaultSize.X.Offset, defaultSize.Y.Scale*ClickScale, defaultSize.Y.Offset)
+
+                gui.MouseEnter:Connect(function()
+
+                    if gui.Active then
+
+                        gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                
+                    end
+
+                end)
     
+                gui.MouseLeave:Connect(function()
+    
+                    if gui.Active then
+
+                        gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+    
+                    end
+
+                end)
+    
+                gui.MouseButton1Down:Connect(function(x,y)
+    
+                    if gui.Active then
+
+                        gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                        RMmodule:PlayClickSound()
+
+                    end
+                
+                end)
+
+                gui.Activated:Connect(function(InputObject, Clicks)
+
+                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                    RMmodule:PlayClickSound()
+                
+                end)
+            
+            end
+    
+        end
+    
+    end
+
+end
+
+-- Connects the mobile button events
+function RMmodule:ConnectMobileButtonEvents()
+
+    for index, TableValue in ipairs(self.AllButtunGUi) do
+
+        for index, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
+
+            if TableValue[1] == gui.Name then
+
+                local defaultSize = gui.Size
+                local EnterScale = 1.20
+                local ClickScale = 0.8
+    
+                local EnterSize = UDim2.new(defaultSize.X.Scale*EnterScale, defaultSize.X.Offset, defaultSize.Y.Scale*EnterScale, defaultSize.Y.Offset)
+    
+                local ClickSize = UDim2.new(defaultSize.X.Scale*ClickScale, defaultSize.X.Offset, defaultSize.Y.Scale*ClickScale, defaultSize.Y.Offset)
+
                 gui.MouseEnter:Connect(function()
     
-                    if table.find(self.GUISTWEENED, gui.Name) == nil then
-    
-                        gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-    
-                    end 
+                    gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
                 
                 end)
     
                 gui.MouseLeave:Connect(function()
     
-                    if table.find(self.GUISTWEENED, gui.Name) == nil then
-    
-                        gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-    
-                    end
+                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
     
                 end)
     
                 gui.MouseButton1Down:Connect(function(x,y)
     
-                    if table.find(self.GUISTWEENED, gui.Name) == nil then
-    
-                        gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-                        RMmodule:PlayClickSound()
-    
-                    end
+                    gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                    RMmodule:PlayClickSound()
                 
                 end)
-    
-                gui.MouseButton1Click:Connect(function()
-    
-                    if table.find(self.GUISTWEENED, gui.Name) == nil then
-    
-                        gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-                        RMmodule:PlayClickSound()
-    
-                    end
-    
+
+                gui.Activated:Connect(function(InputObject, Clicks)
+                
+                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                    RMmodule:PlayClickSound()
+                
                 end)
-            
+
             end
-    
+
         end
     
     end
@@ -183,10 +243,6 @@ function RMmodule:OpenRadialMenu()
 
     for index, Table in ipairs(self.RadialMenuComponents) do
 
-        local place = #self.GUISTWEENED + 1
-
-        table.insert(self.GUISTWEENED, Table[2].Name)
-
         local goal = {}
         goal.Position = Table[3]
         goal.ImageTransparency = 0
@@ -201,7 +257,7 @@ function RMmodule:OpenRadialMenu()
 
         tween.Completed:Connect(function()
         
-            table.remove(self.GUISTWEENED, place)
+            Table[2].Active = true
         
         end)
 
@@ -215,6 +271,8 @@ end
 function RMmodule:CloseRadialMenu()
 
     for i = #self.RadialMenuComponents, 1, -1 do -- Calls the function to tween all gui
+
+        self.RadialMenuComponents[i][2].Active = false
 
         local goal = {}
         goal.Position = self.RadialMenuScreenGui.Center.Position
