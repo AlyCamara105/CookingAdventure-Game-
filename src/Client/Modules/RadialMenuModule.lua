@@ -311,4 +311,22 @@ function RMmodule:OpenOrCloseRadialMenu()
 
 end
 
+-- Image Id to replace roblox's jump button
+RMmodule.CustomJumpButtonImageID = "rbxassetid://7000235365"
+
+-- Function that controls if the device is touch isEnabled
+function RMmodule:TouchEnabled()
+
+    self.MobileButtonScreenGui.JumpIcon.Visible = false
+
+    local RobloxJumpButton = player.PlayerGui.TouchGui.TouchControlFrame.JumpButton
+
+    if RobloxJumpButton ~= nil then
+
+        RobloxJumpButton.Image = self.CustomJumpButtonImageID
+    
+    end
+
+end
+
 return RMmodule
