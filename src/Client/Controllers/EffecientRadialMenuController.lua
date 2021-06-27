@@ -20,10 +20,10 @@ function EffecientRadialMenuController:Start()
 
     RMmodule:UploadRadialComponentsDictionaryAndPositionThem()
     RMmodule:ConnectRadialMenuButtonEvents()
-    RMmodule:ConnectMobileButtonEvents()
 
     if UIS.TouchEnabled then
-    
+        
+        RMmodule:ConnectMobileButtonEvents()
         RMmodule:TouchEnabled()
 
     else
@@ -54,6 +54,7 @@ end
     To be Done:
         - Find better click button sound
         - Clean up the code and simplify it
+        - M̶a̶k̶e̶ ̶t̶h̶e̶ ̶g̶u̶i̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶s̶ ̶p̶l̶a̶y̶b̶a̶c̶k̶ ̶a̶u̶t̶o̶m̶a̶t̶i̶c̶ ̶(̶D̶i̶d̶ ̶n̶o̶t̶ ̶u̶s̶e̶ ̶t̶w̶e̶e̶n̶ ̶s̶e̶r̶v̶i̶c̶e̶ ̶b̶e̶c̶a̶u̶s̶e̶ ̶T̶R̶A̶S̶H̶!̶!̶!̶)̶
         - M̶o̶b̶i̶l̶e̶ ̶I̶c̶o̶n̶s̶ ̶u̶p̶d̶a̶t̶e̶d̶ ̶s̶o̶ ̶o̶n̶l̶y̶ ̶s̶h̶o̶w̶ ̶o̶n̶ ̶T̶o̶u̶c̶h̶ ̶E̶n̶a̶b̶l̶e̶d̶ ̶D̶e̶v̶i̶c̶e̶s̶
         - M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶t̶h̶e̶ ̶g̶u̶i̶ ̶g̶e̶t̶s̶ ̶s̶m̶a̶l̶l̶e̶r̶ ̶o̶n̶ ̶m̶o̶u̶s̶e̶ ̶h̶o̶v̶e̶r̶ ̶a̶n̶d̶ ̶b̶i̶g̶g̶e̶r̶ ̶o̶n̶ ̶m̶o̶u̶s̶e̶ ̶c̶l̶i̶c̶k̶
         - ̶M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶w̶h̶e̶n̶ ̶y̶o̶u̶ ̶c̶l̶i̶c̶k̶ ̶P̶ ̶a̶g̶a̶i̶n̶ ̶i̶t̶ ̶c̶l̶o̶s̶e̶s̶ ̶t̶h̶e̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶

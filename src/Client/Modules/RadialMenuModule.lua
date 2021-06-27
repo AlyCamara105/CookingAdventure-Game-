@@ -135,6 +135,8 @@ function RMmodule:ConnectRadialMenuButtonEvents()
                     if gui.Active then
 
                         gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                        wait(self.ButtonEffectsTime)
+                        gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
                 
                     end
 
@@ -149,22 +151,17 @@ function RMmodule:ConnectRadialMenuButtonEvents()
                     end
 
                 end)
-    
-                gui.MouseButton1Down:Connect(function(x,y)
-    
-                    if gui.Active then
-
-                        gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-                        RMmodule:PlayClickSound()
-
-                    end
-                
-                end)
 
                 gui.Activated:Connect(function(InputObject, Clicks)
 
-                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-                    RMmodule:PlayClickSound()
+                    if gui.Active then
+
+                        gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Bounce, self.ButtonEffectsTime, false)
+                        RMmodule:PlayClickSound()
+                        wait(self.ButtonEffectsTime)
+                        gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Bounce, self.ButtonEffectsTime, false)
+
+                    end
                 
                 end)
             
@@ -194,8 +191,10 @@ function RMmodule:ConnectMobileButtonEvents()
                 local ClickSize = UDim2.new(defaultSize.X.Scale*ClickScale, defaultSize.X.Offset, defaultSize.Y.Scale*ClickScale, defaultSize.Y.Offset)
 
                 gui.MouseEnter:Connect(function()
-    
+
                     gui:TweenSizeAndPosition(EnterSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+                    wait(self.ButtonEffectsTime)
+                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
                 
                 end)
     
@@ -204,18 +203,13 @@ function RMmodule:ConnectMobileButtonEvents()
                     gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
     
                 end)
-    
-                gui.MouseButton1Down:Connect(function(x,y)
-    
-                    gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
-                    RMmodule:PlayClickSound()
-                
-                end)
 
                 gui.Activated:Connect(function(InputObject, Clicks)
-                
-                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Linear, self.ButtonEffectsTime, false)
+
+                    gui:TweenSizeAndPosition(ClickSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Bounce, self.ButtonEffectsTime, false)
                     RMmodule:PlayClickSound()
+                    wait(self.ButtonEffectsTime)
+                    gui:TweenSizeAndPosition(defaultSize, gui.Position, Enum.EasingDirection.Out, Enum.EasingStyle.Bounce, self.ButtonEffectsTime, false)
                 
                 end)
 
