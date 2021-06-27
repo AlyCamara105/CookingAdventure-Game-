@@ -26,6 +26,10 @@ function EffecientRadialMenuController:Start()
     
         RMmodule:TouchEnabled()
 
+    else
+
+        RMmodule:TouchDisabled()
+
     end
 
     local RadialMenuHotKey = Enum.KeyCode.R
@@ -49,7 +53,8 @@ end
 --[[
     To be Done:
         - Find better click button sound
-        - Clean up the code and simplify it 
+        - Clean up the code and simplify it
+        - M̶o̶b̶i̶l̶e̶ ̶I̶c̶o̶n̶s̶ ̶u̶p̶d̶a̶t̶e̶d̶ ̶s̶o̶ ̶o̶n̶l̶y̶ ̶s̶h̶o̶w̶ ̶o̶n̶ ̶T̶o̶u̶c̶h̶ ̶E̶n̶a̶b̶l̶e̶d̶ ̶D̶e̶v̶i̶c̶e̶s̶
         - M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶t̶h̶e̶ ̶g̶u̶i̶ ̶g̶e̶t̶s̶ ̶s̶m̶a̶l̶l̶e̶r̶ ̶o̶n̶ ̶m̶o̶u̶s̶e̶ ̶h̶o̶v̶e̶r̶ ̶a̶n̶d̶ ̶b̶i̶g̶g̶e̶r̶ ̶o̶n̶ ̶m̶o̶u̶s̶e̶ ̶c̶l̶i̶c̶k̶
         - ̶M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶w̶h̶e̶n̶ ̶y̶o̶u̶ ̶c̶l̶i̶c̶k̶ ̶P̶ ̶a̶g̶a̶i̶n̶ ̶i̶t̶ ̶c̶l̶o̶s̶e̶s̶ ̶t̶h̶e̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶
         - M̶a̶k̶e̶ ̶R̶ ̶t̶h̶e̶ ̶K̶e̶y̶C̶o̶d̶e̶ ̶f̶o̶r̶ ̶t̶r̶i̶g̶e̶g̶r̶i̶n̶g̶ ̶R̶a̶d̶i̶a̶l̶ ̶M̶e̶n̶u̶

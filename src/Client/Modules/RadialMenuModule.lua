@@ -329,4 +329,14 @@ function RMmodule:TouchEnabled()
 
 end
 
+function RMmodule:TouchDisabled()
+
+    for i, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
+
+        gui.Visible = false
+
+    end
+
+end
+
 return RMmodule
