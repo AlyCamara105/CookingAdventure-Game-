@@ -6,6 +6,14 @@
 
 local RMmodule = {}
 
+RMmodule.IEmodule = nil
+
+function RMmodule:Start()
+
+    self.IEmodule = self.Modules.ItemEquipperModule
+
+end
+
 local RP = game:GetService("ReplicatedStorage")
 local TS = game:GetService("TweenService")
 local player = game.Players.LocalPlayer
@@ -86,7 +94,7 @@ RMmodule.CookingUtencils2ScreenGuiComponents = {
 }
 
 -- Table of Special Gui Buttons events
-RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory"}
+RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory", "BasicKnife"}
 
 -- Action Events that will be connected for buttons
 function RMmodule:ConnectSpecificRadialMenuButton(gui)
@@ -129,6 +137,17 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
             self:OpenInventory()
         
         end)
+
+    -- When the Basic Knife Button is clicked then call the equip knife function from the Item Equipper Module
+    elseif gui.Name == "BasicKnife" then
+
+        gui.Activated:Connect(function(InputObject, Clicks)
+   
+            print("I was activated!")
+            self:CloseRadialMenu()
+            self.IEmodule:CheckForBasicKnife()
+        
+        end)    
 
     end
     
@@ -473,7 +492,7 @@ RMmodule.BackgroundSpaceButton.MouseMoved:Connect(function(X,Y)
 
     local AbsolutePos = RMmodule.BackgroundSpaceButton.AbsolutePosition
     local CenterPos = Vector2.new(AbsolutePos.X/2, AbsolutePos.Y/2)
-    local PixelDistance = 15
+    local PixelDistance = 8
 
     if RMmodule.OpenedRadialMenu then
 
