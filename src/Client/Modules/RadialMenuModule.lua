@@ -336,6 +336,161 @@ RMmodule.BackgroundSpaceButton.Activated:Connect(function()
 
 end)
 
+-- The math that deals with moving each gui element based on screen size
+function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, ScreenGui, ScreenGuiTableInfo)
+    
+    local MouseXDiff = nil
+    local MouseYDiff = nil
+    local XMoveDistance = nil
+    local YMoveDistance = nil
+    local AddX = nil
+    local AddY = nil
+
+    if mouseX >= Centerpos.X then
+
+        MouseXDiff = mouseX - Centerpos.X
+        AddX = true
+
+    else
+
+        MouseXDiff = Centerpos.X - mouseX
+        AddX = false
+    
+    end
+
+    if mouseY >= Centerpos.Y then
+
+        MouseYDiff = mouseY - Centerpos.Y
+        AddY = true
+
+    else
+
+        MouseYDiff = Centerpos.Y - mouseY
+        AddY = false
+
+    end
+
+    XMoveDistance = (MouseXDiff/Centerpos.X) * Pixeldistance
+
+    YMoveDistance = (MouseYDiff/Centerpos.Y) * Pixeldistance
+
+    
+
+    if AddX and AddY then
+
+        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+
+            local OldPosition = nil
+
+            for index, gui in ipairs(ScreenGui:GetChildren()) do
+
+                if gui.Name == GuiInfoTable[1] then
+
+                    OldPosition = GuiInfoTable[3]
+
+                    gui.Position = UDim2.new(OldPosition.X.Scale, OldPosition.X.Offset + XMoveDistance, OldPosition.Y.Scale, OldPosition.Y.Offset + YMoveDistance )
+
+                    break
+                
+                end
+
+            end       
+
+        end
+
+    elseif AddX and not AddY then
+
+        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+
+            local OldPosition = nil
+
+            for index, gui in ipairs(ScreenGui:GetChildren()) do
+
+                if gui.Name == GuiInfoTable[1] then
+
+                    OldPosition = GuiInfoTable[3]
+
+                    gui.Position = UDim2.new(OldPosition.X.Scale, OldPosition.X.Offset + XMoveDistance, OldPosition.Y.Scale, OldPosition.Y.Offset - YMoveDistance )
+
+                    break
+                
+                end
+
+            end           
+
+        end
+
+    elseif not AddX and AddY then
+
+        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+
+            local OldPosition = nil
+
+            for index, gui in ipairs(ScreenGui:GetChildren()) do
+
+                if gui.Name == GuiInfoTable[1] then
+
+                    OldPosition = GuiInfoTable[3]
+
+                    gui.Position = UDim2.new(OldPosition.X.Scale, OldPosition.X.Offset - XMoveDistance, OldPosition.Y.Scale, OldPosition.Y.Offset + YMoveDistance )
+
+                    break
+                
+                end
+
+            end
+
+        end
+
+    elseif not AddX and not AddY then
+
+        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+
+            local OldPosition = nil
+
+            for index, gui in ipairs(ScreenGui:GetChildren()) do
+
+                if GuiInfoTable[1] == gui.Name then
+
+                    OldPosition = GuiInfoTable[3]
+
+                    gui.Position = UDim2.new(OldPosition.X.Scale, OldPosition.X.Offset - XMoveDistance, OldPosition.Y.Scale, OldPosition.Y.Offset - YMoveDistance )
+
+                    break
+                
+                end
+
+            end     
+
+        end
+
+    end
+
+end
+
+-- Controls the Gui moving effects
+RMmodule.BackgroundSpaceButton.MouseMoved:Connect(function(X,Y)
+
+    local AbsolutePos = RMmodule.BackgroundSpaceButton.AbsolutePosition
+    local CenterPos = Vector2.new(AbsolutePos.X/2, AbsolutePos.Y/2)
+    local PixelDistance = 15
+
+    if RMmodule.OpenedRadialMenu then
+
+        RMmodule:ChangeLocationOfGui(CenterPos, PixelDistance, X, Y, RMmodule.RadialMenuScreenGui, RMmodule.RadialMenuComponents)
+    
+    elseif RMmodule.OpenedCookingUtencils1ScreenGui then
+
+        RMmodule:ChangeLocationOfGui(CenterPos, PixelDistance, X, Y, RMmodule.CookingUtencils1ScreenGui, RMmodule.CookingUtencils1ScreenGuiComponents)
+
+    elseif RMmodule.OpenedCookingUtencils2ScreenGui then
+
+        RMmodule:ChangeLocationOfGui(CenterPos, PixelDistance, X, Y, RMmodule.CookingUtencils2ScreenGui, RMmodule.CookingUtencils2ScreenGuiComponents)
+
+    end
+
+end)
+
 -- The function that will get executed when the background button is activated which closes any open gui
 function RMmodule:CloseOpenGui()
 
