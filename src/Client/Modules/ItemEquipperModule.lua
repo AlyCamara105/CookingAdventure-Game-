@@ -12,13 +12,23 @@ function ItemEquipperModule:Start()
 
     self.RMmodule = self.Modules.RadialMenuModule
 
+    self.Services.ItemCreator.Create:Connect(function(ITEM)
+
+        if ITEM == nil then
+
+            print("The server was not able to create the item!")
+
+        else
+
+            print("The server created the item!")
+            self.EquippedBasicKnife = true
+            self.Knife = ITEM
+    
+        end
+    
+    end)
+
 end
-
-local player = game.Players.LocalPlayer
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-ItemEquipperModule.ItemFolder = ReplicatedStorage.Items
 
 function ItemEquipperModule:CheckForBasicKnife()
 
@@ -36,18 +46,13 @@ end
 
 function ItemEquipperModule:EquipKnife()
 
-    self.Knife = self.ItemFolder.CookingKnife:Clone()
-
-    self.Knife.PrimaryPart.Position = player.Character.PrimaryPart.Position
-    self.Knife.Parent = workspace
-
-    self.EquippedBasicKnife = true
+    self.Services.ItemCreator.Create:Fire(true, "CookingKnife")
 
 end
 
 function ItemEquipperModule:UnequipKnife()
 
-    self.Knife:Destroy()
+    self.Services.ItemCreator.Create:Fire(false, self.Knife)
 
     self.EquippedBasicKnife = false
 

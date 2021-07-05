@@ -143,7 +143,6 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
 
         gui.Activated:Connect(function(InputObject, Clicks)
    
-            print("I was activated!")
             self:CloseRadialMenu()
             self.IEmodule:CheckForBasicKnife()
         
@@ -487,8 +486,9 @@ function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, 
 
 end
 
--- Controls the Gui moving effects
-RMmodule.BackgroundSpaceButton.MouseMoved:Connect(function(X,Y)
+-- Controls the Gui moving effects. (Discountinued)
+
+--[[RMmodule.BackgroundSpaceButton.MouseMoved:Connect(function(X,Y)
 
     local AbsolutePos = RMmodule.BackgroundSpaceButton.AbsolutePosition
     local CenterPos = Vector2.new(AbsolutePos.X/2, AbsolutePos.Y/2)
@@ -508,7 +508,7 @@ RMmodule.BackgroundSpaceButton.MouseMoved:Connect(function(X,Y)
 
     end
 
-end)
+end)]]
 
 -- The function that will get executed when the background button is activated which closes any open gui
 function RMmodule:CloseOpenGui()
