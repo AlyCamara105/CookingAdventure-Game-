@@ -143,7 +143,7 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
 
         gui.Activated:Connect(function(InputObject, Clicks)
    
-            self:CloseRadialMenu()
+            self:CloseCookingUtencils1RadialMenu()
             self.IEmodule:CheckForBasicKnife()
         
         end)    

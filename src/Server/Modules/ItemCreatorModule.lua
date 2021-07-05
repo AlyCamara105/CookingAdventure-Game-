@@ -12,7 +12,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 ItemCreatorModule.ItemFolder = ReplicatedStorage.Items
 
 
-function ItemCreatorModule:Create(item)
+function ItemCreatorModule:Create(player, item)
 
     local ITEM = nil
 
@@ -20,6 +20,14 @@ function ItemCreatorModule:Create(item)
 
         ITEM = self.ItemFolder.CookingKnife:Clone()
         ITEM.Parent = workspace
+
+        if ITEM ~= nil then
+
+            local Humanoid = player.Character.Humanoid
+
+            Humanoid:AddAccessory(ITEM)
+
+        end
 
     end    
 
