@@ -16,10 +16,13 @@ function EffecientRadialMenuController:Start()
         wait()
     until player.Character
 
-    local RMmodule = self.Modules.RadialMenuModule
+    wait(1) --Things may still have not loaded yet
+
+    local RMmodule = self.Modules.GuiController
 
     RMmodule:UploadRadialComponentsDictionaryAndPositionThem()
     RMmodule:ConnectRadialMenuButtonEvents()
+    RMmodule:ConnectInvetoryGuiEvents()
 
     if UIS.TouchEnabled then
         
@@ -34,6 +37,8 @@ function EffecientRadialMenuController:Start()
 
     local RadialMenuHotKey = Enum.KeyCode.R
 
+    local InventoryHotKey = Enum.KeyCode.B
+
     UIS.InputBegan:Connect(function(input, gpe)
 
         if gpe  then 
@@ -43,6 +48,10 @@ function EffecientRadialMenuController:Start()
         elseif input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == RadialMenuHotKey then
 
             RMmodule:OpenOrCloseRadialMenu()
+
+        elseif input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == InventoryHotKey then
+
+            RMmodule:OpenOrCloseInventory()
 
         end
 

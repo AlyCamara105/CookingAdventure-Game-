@@ -541,6 +541,8 @@ function RMmodule:GoBackGui()
 
     if self.OpenedCookingUtencils2ScreenGui then
 
+        print("We closed the gui cuz it was open")
+
         self:CloseCookingUtencils2RadialMenu()
     
     end
@@ -564,8 +566,9 @@ function RMmodule:CloseInventory()
     self.BackgroundSpaceButton.Visible = false
 
     self.InventoryFrame.Visible = false
-    self.InventoryFrame.Ingredients.Visible = true
-    self.InventoryFrame.Weapons.Visible = false
+    
+    self:OpenIngredientsInventory()
+    self:CloseWeaponsInventory()
 
     self.OpenedInventory = false
 
@@ -792,11 +795,109 @@ function RMmodule:TouchEnabled()
 
 end
 
+-- Function that controls when the device is not touch enabled
 function RMmodule:TouchDisabled()
 
     for i, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
 
         gui.Visible = false
+
+    end
+
+end
+
+-- Whether the Weapons Inventory is open
+RMmodule.OpenedWeaponsInventoryFrame = false
+
+-- Whether the Ingredients Inventry is open
+RMmodule.OpenedIngredientsInventoryFrame = false
+
+-- Opens the weapons inventory frame
+function RMmodule:OpenWeaponsInventory()
+
+    local WeaponsButton = self.InventoryFrame.Weapons
+
+    WeaponsButton.Visible = true
+
+    self.OpenedWeaponsInventoryFrame = true
+
+end
+
+-- Closes the weapons inventory frame
+function RMmodule:CloseWeaponsInventory()
+
+    local WeaponsButton = self.InventoryFrame.Weapons
+
+    WeaponsButton.Visible = false
+
+    self.OpenedWeaponsInventoryFrame = false
+
+end
+
+-- Opens Ingredients Inventory
+function RMmodule:OpenIngredientsInventory()
+
+    local IngredientsFrame = self.InventoryFrame.Ingredients
+
+    IngredientsFrame.Visible = true
+
+    self.OpenedIngredientsInventoryFrame = true
+
+end
+
+-- Closes Ingredients Inventory
+function RMmodule:CloseIngredientsInventory()
+
+    local IngredientsFrame = self.InventoryFrame.Ingredients
+
+    IngredientsFrame.Visible = false
+
+    self.OpenedIngredientsInventoryFrame = false
+
+end
+
+-- Function that controls the inventory gui
+function RMmodule:ConnectInvetoryGuiEvents()
+
+    local WeaponsButton = self.InventoryFrame.WeaponInventory
+
+    local IngredientsButton = self.InventoryFrame.FoodInventory
+
+    WeaponsButton.Activated:Connect(function(input)
+
+        if not self.OpenedWeaponsInventoryFrame then
+
+            self:CloseIngredientsInventory()
+            self:OpenWeaponsInventory()
+
+        end   
+    
+    end)
+
+    IngredientsButton.Activated:Connect(function(input)
+
+        if not self.OpenedIngredientsInventoryFrame then
+
+            self:CloseWeaponsInventory()
+            self:OpenIngredientsInventory()
+
+        end
+    
+    end)
+ 
+end
+
+function RMmodule:OpenOrCloseInventory()
+
+    if self.OpenedInventory then
+
+        self:CloseOpenGui()
+    
+    elseif not self.OpenedInventory then
+
+        self:CloseOpenGui()
+
+        self:OpenInventory()
 
     end
 

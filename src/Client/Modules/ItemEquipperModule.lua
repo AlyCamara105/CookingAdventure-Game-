@@ -10,7 +10,7 @@ ItemEquipperModule.RMmodule = nil
 
 function ItemEquipperModule:Start()
 
-    self.RMmodule = self.Modules.RadialMenuModule
+    self.RMmodule = self.Modules.GuiController
 
     self.Services.ItemCreator.Create:Connect(function(ITEM)
 
