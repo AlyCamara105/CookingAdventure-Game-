@@ -19,7 +19,7 @@ function ItemCreator:Start()
 
             local ITEM = ServerItemCreatorModule:Create(player, item)
 
-            self:FireClient(CreateItemEvent, player, ITEM)
+            self:FireClient(CreateItemEvent, player, ITEM, item)
 
         elseif not create then
 

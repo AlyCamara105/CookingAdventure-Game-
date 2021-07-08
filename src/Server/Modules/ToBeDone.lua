@@ -47,6 +47,8 @@ local ToBeDone = {}
 
     Notes:
         - Strike through command is Ctrl + K
+        - (This was when I made the items Accessories and I tried to apply a Motor6D afterwards) This solves the problem.
+            -Motor6D.C0 = ITEM.Handle.CFrame:Inverse() * desiredCFrame
 ]]
 
 return ToBeDone

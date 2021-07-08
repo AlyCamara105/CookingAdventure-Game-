@@ -94,7 +94,7 @@ RMmodule.CookingUtencils2ScreenGuiComponents = {
 }
 
 -- Table of Special Gui Buttons events
-RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory", "BasicKnife"}
+RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory", "BasicKnife", "MortarStaff"}
 
 -- Action Events that will be connected for buttons
 function RMmodule:ConnectSpecificRadialMenuButton(gui)
@@ -138,7 +138,7 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
         
         end)
 
-    -- When the Basic Knife Button is clicked then call the equip knife function from the Item Equipper Module
+    -- When the Basic Knife Button is clicked then call the check knife function from the Item Equipper Module
     elseif gui.Name == "BasicKnife" then
 
         gui.Activated:Connect(function(InputObject, Clicks)
@@ -146,7 +146,17 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
             self:CloseCookingUtencils1RadialMenu()
             self.IEmodule:CheckForBasicKnife()
         
-        end)    
+        end)  
+        
+    -- When the Mortar Staff Button is clicked then call the check mortar staff function from the Item Equipper Module
+    elseif gui.Name == "MortarStaff" then
+
+        gui.Activated:Connect(function(InputObject, Clicks)
+
+            self:CloseCookingUtencils1RadialMenu()
+            self.IEmodule:CheckForMortar()
+        
+        end) 
 
     end
     
