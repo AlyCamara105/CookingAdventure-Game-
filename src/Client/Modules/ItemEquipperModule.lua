@@ -16,11 +16,11 @@ function ItemEquipperModule:Start()
 
         if ITEM == nil then
 
-            print("The server was not able to create the item!")
+            print("The server was not able to create the item! (Client)")
 
         else
 
-            print("The server created the item!")
+            print("The server created the item! (Client)")
             self.EquippedBasicKnife = true
             self.Knife = ITEM
     

@@ -354,6 +354,13 @@ RMmodule.BackgroundSpaceButton.Activated:Connect(function()
 
 end)
 
+-- Changes the visibility of the BackgroundSpaceButton
+function RMmodule:ChangeBackgroundSpaceVisibility(boolean)
+
+    self.BackgroundSpaceButton.Visible = boolean
+
+end
+
 -- The math that deals with moving each gui element based on screen size
 function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, ScreenGui, ScreenGuiTableInfo)
     
@@ -541,8 +548,6 @@ function RMmodule:GoBackGui()
 
     if self.OpenedCookingUtencils2ScreenGui then
 
-        print("We closed the gui cuz it was open")
-
         self:CloseCookingUtencils2RadialMenu()
     
     end
@@ -556,14 +561,14 @@ function RMmodule:OpenInventory()
 
     self.OpenedInventory = true
 
-    self.BackgroundSpaceButton.Visible = true
+    self:ChangeBackgroundSpaceVisibility(true)
 
 end
 
 -- Closes the inventory frame
 function RMmodule:CloseInventory()
 
-    self.BackgroundSpaceButton.Visible = false
+    self:ChangeBackgroundSpaceVisibility(false)
 
     self.InventoryFrame.Visible = false
     
@@ -601,14 +606,14 @@ function RMmodule:OpenCookingUtencils1RadialMenu()
 
     self.OpenedCookingUtencils1ScreenGui = true
 
-    self.BackgroundSpaceButton.Visible = true
+    self:ChangeBackgroundSpaceVisibility(true)
 
 end
 
 -- Close the CookingUtencils1 Radial Menu Gui
 function RMmodule:CloseCookingUtencils1RadialMenu()
 
-    self.BackgroundSpaceButton.Visible = false
+    self:ChangeBackgroundSpaceVisibility(false)
 
     for i = #self.CookingUtencils1ScreenGuiComponents, 1, -1 do -- Calls the function to tween all gui
 
@@ -663,14 +668,14 @@ function RMmodule:OpenCookingUtencils2RadialMenu()
 
     self.OpenedCookingUtencils2ScreenGui = true
 
-    self.BackgroundSpaceButton.Visible = true
+    self:ChangeBackgroundSpaceVisibility(true)
 
 end
 
 -- Close the CookingUtencils2 Radial Menu Gui
 function RMmodule:CloseCookingUtencils2RadialMenu()
 
-    self.BackgroundSpaceButton.Visible = false
+    self:ChangeBackgroundSpaceVisibility(false)
 
     for i = #self.CookingUtencils2ScreenGuiComponents, 1, -1 do -- Calls the function to tween all gui
 
@@ -725,14 +730,14 @@ function RMmodule:OpenRadialMenu()
 
     self.OpenedRadialMenu = true
 
-    self.BackgroundSpaceButton.Visible = true
+    self:ChangeBackgroundSpaceVisibility(true)
 
 end
 
 -- Function that controls closing the radial menu
 function RMmodule:CloseRadialMenu()
 
-    self.BackgroundSpaceButton.Visible = false
+    self:ChangeBackgroundSpaceVisibility(false)
 
     for i = #self.RadialMenuComponents, 1, -1 do -- Calls the function to tween all gui
 
@@ -815,9 +820,9 @@ RMmodule.OpenedIngredientsInventoryFrame = false
 -- Opens the weapons inventory frame
 function RMmodule:OpenWeaponsInventory()
 
-    local WeaponsButton = self.InventoryFrame.Weapons
+    local WeaponsFrame = self.InventoryFrame.Weapons
 
-    WeaponsButton.Visible = true
+    WeaponsFrame.Visible = true
 
     self.OpenedWeaponsInventoryFrame = true
 
@@ -826,9 +831,9 @@ end
 -- Closes the weapons inventory frame
 function RMmodule:CloseWeaponsInventory()
 
-    local WeaponsButton = self.InventoryFrame.Weapons
+    local WeaponsFrame = self.InventoryFrame.Weapons
 
-    WeaponsButton.Visible = false
+    WeaponsFrame.Visible = false
 
     self.OpenedWeaponsInventoryFrame = false
 
@@ -867,6 +872,7 @@ function RMmodule:ConnectInvetoryGuiEvents()
 
         if not self.OpenedWeaponsInventoryFrame then
 
+            self:PlayClickSound()
             self:CloseIngredientsInventory()
             self:OpenWeaponsInventory()
 
@@ -878,6 +884,7 @@ function RMmodule:ConnectInvetoryGuiEvents()
 
         if not self.OpenedIngredientsInventoryFrame then
 
+            self:PlayClickSound()
             self:CloseWeaponsInventory()
             self:OpenIngredientsInventory()
 

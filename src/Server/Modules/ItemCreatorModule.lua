@@ -33,7 +33,7 @@ function ItemCreatorModule:Create(player, item)
 
             Motor6D.C0 = CFrame.new(0,-0.05,0)
 
-            --This solves the problem. Next problem is making it a group so that I could get it to animate through studio.
+            --(This was when I made the items Accessories)This solves the problem. Next problem is making it a group so that I could get it to animate through studio.
             --Motor6D.C0 = ITEM.Handle.CFrame:Inverse() * desiredCFrame
 
         end
