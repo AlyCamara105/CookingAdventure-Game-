@@ -9,7 +9,6 @@ local ToBeDone = {}
 --[[
     To be Done:
         - Clean up code and simplify it
-        - Finish adding cooking items
         - Find a gui enter sound for all gui 
         - Find better click button sound for gui
         - Add player control script:
@@ -17,12 +16,20 @@ local ToBeDone = {}
             - Player dash controls
             - Player crouch controls
             - Player crouch animation
+                - Only play crouch animation when player starts moving. Try making it so the animations freezes then continues only when 
+                the player is moving. So it doesn't just start and stop the animation which restarts it.
+
             - Default shiftlock mode where when the mouse moves the camera moves withough left click
         - Add mobile button player controls
         - Finish scripting inventory stuff then add it with DataStore2 (later)
         - Learn FastCast for weapons (later)
 
     Done:      
+        - F̶i̶n̶i̶s̶h̶ ̶a̶d̶d̶i̶n̶g̶ ̶c̶o̶o̶k̶i̶n̶g̶ ̶i̶t̶e̶m̶s̶
+        - A̶d̶d̶ ̶t̶h̶e̶ ̶t̶o̶o̶l̶ ̶r̶i̶g̶s̶ ̶f̶o̶r̶ ̶M̶y̶s̶t̶i̶c̶ ̶t̶o̶ ̶a̶n̶i̶m̶a̶t̶e̶
+        - A̶d̶d̶e̶d̶ ̶t̶h̶e̶ ̶s̶c̶r̶i̶p̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶i̶t̶ ̶"̶s̶m̶a̶r̶t̶ ̶u̶n̶e̶q̶u̶i̶p̶e̶s̶"̶
+        - A̶d̶d̶e̶d̶ ̶t̶h̶e̶ ̶M̶o̶r̶t̶a̶r̶ ̶a̶n̶d̶ ̶s̶t̶a̶f̶f̶ ̶t̶o̶o̶l̶ ̶R̶i̶g̶ ̶t̶o̶ ̶w̶o̶r̶k̶s̶p̶a̶c̶e̶ ̶t̶o̶ ̶b̶e̶ ̶a̶n̶i̶m̶a̶t̶e̶d̶
+        - A̶d̶d̶e̶d̶ ̶m̶o̶r̶t̶a̶r̶ ̶a̶n̶d̶ ̶s̶t̶a̶f̶f̶ ̶t̶o̶o̶
         - F̶i̶x̶ ̶c̶l̶i̶c̶k̶i̶n̶g̶ ̶n̶o̶n̶ ̶i̶n̶t̶e̶r̶a̶c̶t̶i̶v̶e̶ ̶p̶a̶r̶t̶s̶ ̶o̶f̶ ̶i̶n̶v̶e̶n̶t̶o̶r̶y̶ ̶g̶u̶i̶ ̶c̶l̶o̶s̶e̶s̶ ̶i̶t̶
         - M̶a̶k̶e̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶p̶l̶a̶y̶e̶r̶ ̶c̶a̶n̶n̶o̶t̶ ̶m̶o̶v̶e̶ ̶w̶h̶e̶n̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶s̶ ̶h̶a̶v̶e̶n̶'̶t̶ ̶l̶o̶a̶d̶e̶d̶ ̶a̶n̶d̶ ̶t̶h̶a̶t̶ ̶i̶t̶ ̶a̶l̶w̶a̶y̶s̶ ̶w̶o̶r̶k̶s̶ ̶i̶f̶ ̶t̶h̶e̶y̶ ̶r̶e̶s̶p̶a̶w̶n̶
         - M̶a̶k̶e̶ ̶t̶h̶e̶ ̶t̶u̶r̶n̶i̶n̶g̶ ̶B̶a̶c̶k̶g̶r̶o̶u̶n̶d̶ ̶b̶u̶t̶t̶o̶n̶ ̶v̶i̶s̶i̶b̶i̶l̶i̶t̶y̶ ̶o̶n̶/̶o̶f̶f̶ ̶a̶ ̶f̶u̶n̶c̶t̶i̶o̶n̶ ̶f̶o̶r̶ ̶b̶e̶t̶t̶e̶r̶ ̶c̶o̶n̶t̶r̶o̶l̶

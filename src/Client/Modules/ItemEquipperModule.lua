@@ -24,6 +24,14 @@ function ItemEquipperModule:CheckEquippedItem(item)
 
             self:UnequipMortar()
 
+        elseif Item == "Pan" then
+
+            self:UnequipPan()
+
+        elseif Item == "Pot" then
+
+            self:UnequipPot()
+
         end
 
     end
@@ -57,6 +65,20 @@ function ItemEquipperModule:Start()
 
                 self.EquippedMortar = true
                 self.Mortar = ITEM
+
+                self.EquippedItem = item
+
+            elseif item == "Pan" then
+
+                self.EquippedPan = true
+                self.Pan = ITEM
+
+                self.EquippedItem = item
+
+            elseif item == "Pot" then
+
+                self.EquippedPot = true
+                self.Pot = ITEM
 
                 self.EquippedItem = item
 
@@ -128,5 +150,64 @@ function ItemEquipperModule:UnequipMortar()
 
 end
 
+function ItemEquipperModule:CheckForPan()
+
+    self:CheckEquippedItem("Pan")
+
+    if self.EquippedPan then
+
+        self:UnequipPan()
+
+    elseif not self.EquippedPan then
+
+        self:EquipPan()
+
+    end
+
+end
+
+function ItemEquipperModule:EquipPan()
+
+    self.Services.ItemCreator.Create:Fire(true, "Pan")
+
+end
+
+function ItemEquipperModule:UnequipPan()
+
+    self.Services.ItemCreator.Create:Fire(false, self.Pan)
+
+    self.EquippedPan = false
+
+end
+
+function ItemEquipperModule:CheckForPot()
+
+    self:CheckEquippedItem("Pot")
+
+    if self.EquippedPot then
+
+        self:UnequipPot()
+
+    elseif not self.EquippedPot then
+
+        self:EquipPot()
+
+    end
+
+end
+
+function ItemEquipperModule:EquipPot()
+
+    self.Services.ItemCreator.Create:Fire(true, "Pot")
+
+end
+
+function ItemEquipperModule:UnequipPot()
+
+    self.Services.ItemCreator.Create:Fire(false, self.Pot)
+
+    self.EquippedPot = false
+
+end
 
 return ItemEquipperModule

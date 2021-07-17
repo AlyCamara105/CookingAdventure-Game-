@@ -49,15 +49,49 @@ function ItemCreatorModule:Create(player, item)
     
                 Motor6D.C0 = CFrame.new(0,-0.2,0)
 
-                local Motor6D2 = Instance.new("Motor6D")
+                --[[local Motor6D2 = Instance.new("Motor6D")
                 Motor6D2.Parent = player.Character.LeftHand
     
                 Motor6D2.Part0 = player.Character.LeftHand
                 Motor6D2.Part1 = player.Character.Mortar.GrinderHandle
     
-                Motor6D2.C0 = CFrame.new(0,-0.15,-0.5)
+                Motor6D2.C0 = CFrame.new(0,-0.15,-0.5)]]
     
             end
+
+    elseif item == "Pan" then
+
+        ITEM = self.ItemFolder.Pan:Clone()
+        ITEM.Parent = player.Character
+
+        if ITEM ~= nil then
+    
+            local Motor6D = Instance.new("Motor6D")
+            Motor6D.Parent = player.Character.RightHand
+
+            Motor6D.Part0 = player.Character.RightHand
+            Motor6D.Part1 = player.Character.Pan.PrimaryPart
+
+            Motor6D.C0 = CFrame.new(0,-0.17,0)
+
+        end
+
+    elseif item == "Pot" then
+
+        ITEM = self.ItemFolder.Pot:Clone()
+        ITEM.Parent = player.Character
+
+        if ITEM ~= nil then
+    
+            local Motor6D = Instance.new("Motor6D")
+            Motor6D.Parent = player.Character.RightHand
+
+            Motor6D.Part0 = player.Character.RightHand
+            Motor6D.Part1 = player.Character.Pot.PrimaryPart
+
+            --Modifying the Motor6D's C0 was not needed
+
+        end
 
     end    
 
@@ -67,7 +101,11 @@ end
 
 function ItemCreatorModule:Delete(item)
 
-    item:Destroy()
+    if item then
+
+        item:Destroy()
+
+    end
 
 end
 

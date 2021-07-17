@@ -8,9 +8,13 @@ local RMmodule = {}
 
 RMmodule.IEmodule = nil
 
+RMmodule.PCmodule = nil
+
 function RMmodule:Start()
 
     self.IEmodule = self.Modules.ItemEquipperModule
+
+    self.PCmodule = self.Modules.PlayerControlsModule
 
 end
 
@@ -40,7 +44,7 @@ RMmodule.InventoryFrame = player.PlayerGui.Inventory.InventoryBackframe
 RMmodule.BackgroundSpaceButton = player.PlayerGui.Background.Button
 
 -- Table of buttons to be connected to the button events
-RMmodule.AllButtunGUi = {
+RMmodule.AllButtunGui = {
 
     {"CookingUtencils1"},
     {"CookingUtencils2"},
@@ -54,7 +58,6 @@ RMmodule.AllButtunGUi = {
     {"CrouchIcon"},
     {"DodgerollIcon"},
     {"HandIcon"},
-    {"JumpIcon"},
     {"RunIcon"},
     {"BasicKnife"},
     {"MortarStaff"},
@@ -93,8 +96,18 @@ RMmodule.CookingUtencils2ScreenGuiComponents = {
 
 }
 
+RMmodule.MobileIconsScreenGuiComponents = {
+
+    {"CrouchIcon"},
+    {"DodgerollIcon"},
+    {"HandIcon"},
+    {"RunIcon"},
+
+}
+
 -- Table of Special Gui Buttons events
-RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory", "BasicKnife", "MortarStaff"}
+RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory", "BasicKnife", "MortarStaff", "Pan",
+"Pot", "CrouchIcon"}
 
 -- Action Events that will be connected for buttons
 function RMmodule:ConnectSpecificRadialMenuButton(gui)
@@ -157,6 +170,37 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
             self.IEmodule:CheckForMortar()
         
         end) 
+
+    elseif gui.Name == "Pan" then
+
+        gui.Activated:Connect(function(InputObject, Clicks)
+
+            self:CloseCookingUtencils2RadialMenu()
+            self.IEmodule:CheckForPan()
+        
+        end)
+
+    elseif gui.Name == "Pot" then
+
+        gui.Activated:Connect(function(InputObject, Clicks)
+        
+            self:CloseCookingUtencils2RadialMenu()
+            self.IEmodule:CheckForPot()
+        
+        end)
+
+
+
+    -- Controls mobile button
+    elseif gui.Name == "CrouchIcon" then
+
+        gui.Activated:Connect(function(InputObject, Clicks)
+
+            print("The crouch button was pressed!")
+        
+            self.PCmodule:PlayOrStopCrouchAnimation()
+        
+        end)
 
     end
     
@@ -279,20 +323,22 @@ end
 function RMmodule:ConnectRadialMenuButtonEvents()
 
     -- Connects the radial menu default button effects
-    self:ButtonEffectsDefaults(self.AllButtunGUi, self.RadialMenuScreenGui:GetChildren())
+    self:ButtonEffectsDefaults(self.AllButtunGui, self.RadialMenuScreenGui:GetChildren())
 
     -- Connects the Cooking utencils 1 gui default button effects
-    self:ButtonEffectsDefaults(self.AllButtunGUi, self.CookingUtencils1ScreenGui:GetChildren())
+    self:ButtonEffectsDefaults(self.AllButtunGui, self.CookingUtencils1ScreenGui:GetChildren())
 
     -- Connects the Cooking utencils 1 gui default button effects
-    self:ButtonEffectsDefaults(self.AllButtunGUi, self.CookingUtencils2ScreenGui:GetChildren())
+    self:ButtonEffectsDefaults(self.AllButtunGui, self.CookingUtencils2ScreenGui:GetChildren())
 
+    --Connects the Mobile Icons button default
+    self:ButtonEffectsDefaults(self.AllButtunGui, self.MobileButtonScreenGui:GetChildren())
 end
 
 -- Connects the mobile button events
 function RMmodule:ConnectMobileButtonEvents()
 
-    for index, TableValue in ipairs(self.AllButtunGUi) do
+    for index, TableValue in ipairs(self.AllButtunGui) do
 
         for index, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
 
