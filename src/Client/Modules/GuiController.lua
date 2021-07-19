@@ -107,7 +107,7 @@ RMmodule.MobileIconsScreenGuiComponents = {
 
 -- Table of Special Gui Buttons events
 RMmodule.SpecialGuis = {"RadialMenuButton", "CookingUtencils1", "CookingUtencils2", "Inventory", "BasicKnife", "MortarStaff", "Pan",
-"Pot", "CrouchIcon"}
+"Pot", "CrouchIcon", "RunIcon"}
 
 -- Action Events that will be connected for buttons
 function RMmodule:ConnectSpecificRadialMenuButton(gui)
@@ -195,10 +195,24 @@ function RMmodule:ConnectSpecificRadialMenuButton(gui)
     elseif gui.Name == "CrouchIcon" then
 
         gui.Activated:Connect(function(InputObject, Clicks)
-
-            print("The crouch button was pressed!")
         
             self.PCmodule:PlayOrStopCrouchAnimation()
+        
+        end)
+
+    elseif gui.Name == "RunIcon" then
+
+        gui.Activated:Connect(function(InputObject, Clicks)
+
+            if not self.PCmodule.Running then
+
+                self.PCmodule:StartRunning()
+
+            elseif self.PCmodule.Running then
+
+                self.PCmodule:EndRunning()
+
+            end
         
         end)
 

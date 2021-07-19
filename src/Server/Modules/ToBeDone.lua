@@ -14,17 +14,20 @@ local ToBeDone = {}
         - Add player control script:
             - Player Dash animations
             - Player dash controls
-            - Player crouch controls
-            - Player crouch animation
-                - Only play crouch animation when player starts moving. Try making it so the animations freezes then continues only when 
-                the player is moving. So it doesn't just start and stop the animation which restarts it.
-
             - Default shiftlock mode where when the mouse moves the camera moves withough left click
+            - Add run controls for Mobile Specifically
+            
         - Add mobile button player controls
         - Finish scripting inventory stuff then add it with DataStore2 (later)
-        - Learn FastCast for weapons (later)
+        - Learn FastCast for ranged weapons (later)
+        - Use RayCastHitboxModule for weapons (later)
 
     Done:      
+        - P̶l̶a̶y̶e̶r̶ ̶R̶u̶n̶ ̶c̶o̶n̶t̶r̶o̶l̶s̶
+        - P̶l̶a̶y̶e̶r̶ ̶c̶r̶o̶u̶c̶h̶ ̶c̶o̶n̶t̶r̶o̶l̶s̶
+        - P̶l̶a̶y̶e̶r̶ ̶c̶r̶o̶u̶c̶h̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶
+            - O̶n̶l̶y̶ ̶p̶l̶a̶y̶ ̶c̶r̶o̶u̶c̶h̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶ ̶w̶h̶e̶n̶ ̶p̶l̶a̶y̶e̶r̶ ̶s̶t̶a̶r̶t̶s̶ ̶m̶o̶v̶i̶n̶g̶.̶ ̶T̶r̶y̶ ̶m̶a̶k̶i̶n̶g̶ ̶i̶t̶ ̶s̶o̶ ̶t̶h̶e̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶s̶ ̶f̶r̶e̶e̶z̶e̶s̶ ̶t̶h̶e̶n̶ ̶c̶o̶n̶t̶i̶n̶u̶e̶s̶ ̶o̶n̶l̶y̶ ̶w̶h̶e̶n̶ ̶
+            t̶h̶e̶ ̶p̶l̶a̶y̶e̶r̶ ̶i̶s̶ ̶m̶o̶v̶i̶n̶g̶.̶ ̶S̶o̶ ̶i̶t̶ ̶d̶o̶e̶s̶n̶'̶t̶ ̶j̶u̶s̶t̶ ̶s̶t̶a̶r̶t̶ ̶a̶n̶d̶ ̶s̶t̶o̶p̶ ̶t̶h̶e̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶ ̶w̶h̶i̶c̶h̶ ̶r̶e̶s̶t̶a̶r̶t̶s̶ ̶i̶t̶.̶
         - F̶i̶n̶i̶s̶h̶ ̶a̶d̶d̶i̶n̶g̶ ̶c̶o̶o̶k̶i̶n̶g̶ ̶i̶t̶e̶m̶s̶
         - A̶d̶d̶ ̶t̶h̶e̶ ̶t̶o̶o̶l̶ ̶r̶i̶g̶s̶ ̶f̶o̶r̶ ̶M̶y̶s̶t̶i̶c̶ ̶t̶o̶ ̶a̶n̶i̶m̶a̶t̶e̶
         - A̶d̶d̶e̶d̶ ̶t̶h̶e̶ ̶s̶c̶r̶i̶p̶t̶ ̶s̶o̶ ̶t̶h̶a̶t̶ ̶i̶t̶ ̶"̶s̶m̶a̶r̶t̶ ̶u̶n̶e̶q̶u̶i̶p̶e̶s̶"̶
