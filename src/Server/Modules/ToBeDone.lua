@@ -19,10 +19,10 @@ local ToBeDone = {}
             
         - Add mobile button player controls
         - Finish scripting inventory stuff then add it with DataStore2 (later)
-        - Learn FastCast for ranged weapons (later)
-        - Use RayCastHitboxModule for weapons (later)
 
     Done:      
+        - L̶e̶a̶r̶n̶ ̶F̶a̶s̶t̶C̶a̶s̶t̶ ̶f̶o̶r̶ ̶r̶a̶n̶g̶e̶d̶ ̶w̶e̶a̶p̶o̶n̶s̶ ̶(̶l̶a̶t̶e̶r̶)̶
+        - U̶s̶e̶ ̶R̶a̶y̶C̶a̶s̶t̶H̶i̶t̶b̶o̶x̶M̶o̶d̶u̶l̶e̶ ̶f̶o̶r̶ ̶w̶e̶a̶p̶o̶n̶s̶ ̶(̶l̶a̶t̶e̶r̶)̶
         - P̶l̶a̶y̶e̶r̶ ̶R̶u̶n̶ ̶c̶o̶n̶t̶r̶o̶l̶s̶
         - P̶l̶a̶y̶e̶r̶ ̶c̶r̶o̶u̶c̶h̶ ̶c̶o̶n̶t̶r̶o̶l̶s̶
         - P̶l̶a̶y̶e̶r̶ ̶c̶r̶o̶u̶c̶h̶ ̶a̶n̶i̶m̶a̶t̶i̶o̶n̶
@@ -58,7 +58,8 @@ local ToBeDone = {}
     Notes:
         - Strike through command is Ctrl + K
         - (This was when I made the items Accessories and I tried to apply a Motor6D afterwards) This solves the problem.
-            -Motor6D.C0 = ITEM.Handle.CFrame:Inverse() * desiredCFrame
+            -Motor6D.C0 = ITEM.Handle.CFrame:Inverse() * desiredCFrame (Which was basically CFrame:ToObjectSpace(CFrame)...)
+        - Use ( -- selene: allow(unused_variable) ) to ignore unused variables
 ]]
 
 return ToBeDone

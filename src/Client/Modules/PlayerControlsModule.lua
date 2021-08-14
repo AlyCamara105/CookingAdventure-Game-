@@ -63,13 +63,9 @@ local regFOVTween = nil
 --Creating the animation tracks
 function PCmodule:LoadAnimations()
 
-    repeat
-        wait()
-    until player.Character
-
-    Character = player.Character
-    Humanoid = Character.Humanoid
-    HRP = Humanoid.RootPart
+    Character = player.Character or player.CharacterAdded:Wait()
+    Humanoid = Character:WaitForChild("Humanoid",1)
+    HRP = Character.PrimaryPart
     Animator = Character.Humanoid.Animator
     ClientCam = workspace.CurrentCamera
 

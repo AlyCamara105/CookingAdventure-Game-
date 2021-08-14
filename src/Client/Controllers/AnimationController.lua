@@ -1,6 +1,6 @@
 -- Animation Controller
 -- Username
--- July 7, 2021
+-- August 13, 2021
 
 
 
@@ -11,38 +11,25 @@ function AnimationController:Start()
 
     local player = game.Players.LocalPlayer
 
-    repeat
-        wait()
-    until player.Character
-
     -- Disables player's movement input and prevents the character from being move from other physics before animations change
-    local humanoid = player.Character:WaitForChild("Humanoid",1)
-    humanoid.PlatformStand = true
-    player.Character.HumanoidRootPart.Anchored = true
-
-    wait(1) --Things may have still not loaded yet
-
-    local AnimateScript = player.Character.Animate
+    local Character = player.Character or player.CharacterAdded:Wait()
+    local AnimateScript = Character:WaitForChild("Animate",1)
 
     local runAnim = AnimateScript.run.RunAnim
-
     local walkAnim = AnimateScript.walk.WalkAnim
-
     local idle1Anim = AnimateScript.idle.Animation1
-
     local idle2Anim = AnimateScript.idle.Animation2
+    local jumpAnim = AnimateScript.jump.JumpAnim
+    local fallAnim = AnimateScript.fall.FallAnim
 
-    runAnim.AnimationId = "rbxassetid://6970228509"
+    --Setting the animations don't work either...
 
+    runAnim.AnimationId = "rbxassetid://7234531373"
     walkAnim.AnimationId = runAnim.AnimationId
-
-    idle1Anim.AnimationId = "rbxassetid://6969770148"
-
+    idle1Anim.AnimationId = "rbxassetid://7233696631"
     idle2Anim.AnimationId = idle1Anim.AnimationId
-
-    -- Renables the movement input and allows player's character to feel physics
-    player.Character.HumanoidRootPart.Anchored = false
-    humanoid.PlatformStand = false
+    jumpAnim.AnimationId = "rbxassetid://7233832458"
+    fallAnim.AnimationId = "rbxassetid://7233849630"
 
     player:GetPropertyChangedSignal("Character"):Connect(function()
     

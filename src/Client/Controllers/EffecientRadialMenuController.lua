@@ -11,12 +11,15 @@ function EffecientRadialMenuController:Start()
 
     local UIS = game:GetService("UserInputService")
     local player = game.Players.LocalPlayer
+    local RP = game:GetService("ReplicatedStorage")
 
-    repeat
-        wait()
-    until player.Character
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
 
-    wait(1) --Things may still have not loaded yet
+    for _, screenGui in ipairs(RP.Gui:GetChildren()) do
+        screenGui:Clone().Parent = player.PlayerGui
+    end
 
     local RMmodule = self.Modules.GuiController
 

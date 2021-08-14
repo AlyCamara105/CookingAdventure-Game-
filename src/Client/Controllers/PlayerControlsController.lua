@@ -10,14 +10,6 @@ local PlayerControlsController = {}
 function PlayerControlsController:Start()
 
     local UIS = game:GetService("UserInputService")
-    local RP = game:GetService("ReplicatedStorage")
-    local player = game.Players.LocalPlayer
-
-    repeat
-        wait()
-    until player.Character
-
-    wait(1)
 
     local PCmodule = self.Modules.PlayerControlsModule
 

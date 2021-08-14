@@ -62,7 +62,8 @@ RMmodule.AllButtunGui = {
     {"BasicKnife"},
     {"MortarStaff"},
     {"Pan"},
-    {"Pot"}
+    {"Pot"},
+    {"Peeler"}
 
 }
 
@@ -84,7 +85,8 @@ RMmodule.RadialMenuComponents = {
 RMmodule.CookingUtencils1ScreenGuiComponents = {
 
     {"BasicKnife"},
-    {"MortarStaff"}
+    {"MortarStaff"},
+    {"Peeler"}
 
 }
 
@@ -230,9 +232,9 @@ end
 -- Function for normal gui button information
 function RMmodule:LoadGuiButtonInformation(TableofGuiComponents, ScreenGui)
 
-    for index, TableValue in ipairs(TableofGuiComponents) do
+    for _, TableValue in ipairs(TableofGuiComponents) do
 
-        for index, gui in ipairs(ScreenGui:GetChildren()) do -- Edits the dictionary for the gui with the info, connects events, and places GUI
+        for _, gui in ipairs(ScreenGui:GetChildren()) do -- Edits the dictionary for the gui with the info, connects events, and places GUI
     
             if TableValue[1] == gui.Name then
     
@@ -270,9 +272,9 @@ RMmodule.ButtonEffectsTime = 0.05
 -- Function for normal button effects
 function RMmodule:ButtonEffectsDefaults(AllButtonGuiTable, ScreenGuiTable)
 
-    for index, TableValue in ipairs(AllButtonGuiTable) do
+    for _, TableValue in ipairs(AllButtonGuiTable) do
 
-        for index, gui in ipairs(ScreenGuiTable) do -- Edits the dictionary for the gui with the info, connects events, and places GUI
+        for _, gui in ipairs(ScreenGuiTable) do -- Edits the dictionary for the gui with the info, connects events, and places GUI
     
             if TableValue[1] == gui.Name then
 
@@ -352,9 +354,9 @@ end
 -- Connects the mobile button events
 function RMmodule:ConnectMobileButtonEvents()
 
-    for index, TableValue in ipairs(self.AllButtunGui) do
+    for _, TableValue in ipairs(self.AllButtunGui) do
 
-        for index, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
+        for _, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
 
             if TableValue[1] == gui.Name then
 
@@ -473,11 +475,11 @@ function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, 
 
     if AddX and AddY then
 
-        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+        for _, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
 
             local OldPosition = nil
 
-            for index, gui in ipairs(ScreenGui:GetChildren()) do
+            for _, gui in ipairs(ScreenGui:GetChildren()) do
 
                 if gui.Name == GuiInfoTable[1] then
 
@@ -495,11 +497,11 @@ function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, 
 
     elseif AddX and not AddY then
 
-        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+        for _, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
 
             local OldPosition = nil
 
-            for index, gui in ipairs(ScreenGui:GetChildren()) do
+            for _, gui in ipairs(ScreenGui:GetChildren()) do
 
                 if gui.Name == GuiInfoTable[1] then
 
@@ -517,11 +519,11 @@ function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, 
 
     elseif not AddX and AddY then
 
-        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+        for _, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
 
             local OldPosition = nil
 
-            for index, gui in ipairs(ScreenGui:GetChildren()) do
+            for _, gui in ipairs(ScreenGui:GetChildren()) do
 
                 if gui.Name == GuiInfoTable[1] then
 
@@ -539,11 +541,11 @@ function RMmodule:ChangeLocationOfGui(Centerpos, Pixeldistance, mouseX, mouseY, 
 
     elseif not AddX and not AddY then
 
-        for index, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
+        for _, GuiInfoTable in ipairs(ScreenGuiTableInfo) do
 
             local OldPosition = nil
 
-            for index, gui in ipairs(ScreenGui:GetChildren()) do
+            for _, gui in ipairs(ScreenGui:GetChildren()) do
 
                 if GuiInfoTable[1] == gui.Name then
 
@@ -652,7 +654,7 @@ end
 -- Open the CookingUtencils1 Radial Menu Gui
 function RMmodule:OpenCookingUtencils1RadialMenu()
 
-    for index, Table in ipairs(self.CookingUtencils1ScreenGuiComponents) do
+    for _, Table in ipairs(self.CookingUtencils1ScreenGuiComponents) do
 
         local goal = {}
         goal.Position = Table[3]
@@ -714,7 +716,7 @@ end
 -- Open the CookingUtencils2 Radial Menu Gui
 function RMmodule:OpenCookingUtencils2RadialMenu()
 
-    for index, Table in ipairs(self.CookingUtencils2ScreenGuiComponents) do
+    for _, Table in ipairs(self.CookingUtencils2ScreenGuiComponents) do
 
         local goal = {}
         goal.Position = Table[3]
@@ -776,7 +778,7 @@ end
 -- Function that controls opening the radial menu
 function RMmodule:OpenRadialMenu()
 
-    for index, Table in ipairs(self.RadialMenuComponents) do
+    for _, Table in ipairs(self.RadialMenuComponents) do
 
         local goal = {}
         goal.Position = Table[3]
@@ -873,7 +875,7 @@ end
 -- Function that controls when the device is not touch enabled
 function RMmodule:TouchDisabled()
 
-    for i, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
+    for _, gui in ipairs(self.MobileButtonScreenGui:GetChildren()) do
 
         gui.Visible = false
 
